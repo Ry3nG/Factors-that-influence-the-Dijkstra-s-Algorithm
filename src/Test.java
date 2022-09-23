@@ -1,4 +1,4 @@
-public class App {
+public class Test {
     public static void main(String[] args) throws Exception {
         AdjListGraph g1 = new AdjListGraph(5);
         g1.addEdge(0, 1,4);
