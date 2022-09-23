@@ -9,10 +9,11 @@ public class Test {
         g1.addEdge(1, 4,3);
         g1.addEdge(2, 3,1);
         g1.addEdge(3, 1,1);
+        g1.addEdge(3, 4,3);
         g1.printGraph();
 
         System.out.println();
-        AdjMatrixGraph g2 = new AdjMatrixGraph(5);
+        DijkstraUsingArray g2 = new DijkstraUsingArray(5);
         g2.addEdge(0, 1,4);
         g2.addEdge(0, 2,2);
         g2.addEdge(0, 3,6);
@@ -21,6 +22,8 @@ public class Test {
         g2.addEdge(1, 4,3);
         g2.addEdge(2, 3,1);
         g2.addEdge(3, 1,1);
+        g2.addEdge(3, 4,3);
         g2.printGraph();
+        g2.dijkstraStart(0);
     }
 }
