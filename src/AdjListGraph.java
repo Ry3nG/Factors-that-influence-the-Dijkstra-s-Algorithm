@@ -1,9 +1,9 @@
 import java.util.*;
-public class Graph{
+public class AdjListGraph{
     ArrayList<ArrayList<Integer>> graph;
     int V;
 
-    public Graph(int nodes){
+    public AdjListGraph(int nodes){
         V = nodes;
         graph = new ArrayList<ArrayList<Integer>>();
         for(int i = 0; i < V; i++){
