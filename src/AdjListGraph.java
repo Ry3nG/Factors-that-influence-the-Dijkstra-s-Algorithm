@@ -1,24 +1,25 @@
 import java.util.*;
 public class AdjListGraph{
-    ArrayList<ArrayList<Integer>> graph;
     int V;
+    LinkedList<Edge>[] adjList;
 
     public AdjListGraph(int nodes){
         V = nodes;
-        graph = new ArrayList<ArrayList<Integer>>();
+        adjList = new LinkedList[V];
         for(int i = 0; i < V; i++){
-            graph.add(new ArrayList<Integer>());
+            adjList[i] = new LinkedList<Edge>();
         }
     }
-    public void addEdge(int src, int dest){
-        graph.get(src).add(dest);
-        //graph.get(dest).add(src); //commented because it is a directed graph
+    public void addEdge(int src, int dest, int weight){
+        Edge edge = new Edge(src, dest, weight);
+        adjList[src].addFirst(edge); //directed graph
     }
     public void printGraph(){
         for(int i = 0; i < V; i++){
+            LinkedList<Edge> list = adjList[i];
             System.out.print("Node " + i + " is connected to: ");
-            for(int j = 0; j < graph.get(i).size(); j++){
-                System.out.print(graph.get(i).get(j) + " ");
+            for(int j = 0; j < list.size(); j++){
+                System.out.print(list.get(j).dest + " ");
             }
             System.out.println();
         }
