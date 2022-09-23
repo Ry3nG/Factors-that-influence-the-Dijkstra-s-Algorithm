@@ -1,4 +1,4 @@
-# The Dijkstra's Algorithm
+# Factors that influence the Dijkstra's Algorithm
 > This is a NTU SC2001 Example Class Project
 > 
 The objective of this project is to explore factors that influence the performance of the Dijkstra's Algorithm.
