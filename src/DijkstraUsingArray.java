@@ -31,8 +31,8 @@ public class DijkstraUsingArray extends AdjMatrixGraph {
         return minIndex;
     }
 
-    private void printPath(int src, int dest){
-        if(dest == src){
+    private void printPath(int src, int dest) {
+        if (dest == src) {
             System.out.print(src + " ");
             return;
         }
@@ -40,20 +40,20 @@ public class DijkstraUsingArray extends AdjMatrixGraph {
         System.out.print(dest + " ");
     }
 
-    private void printResult(int src){
-        for(int i = 0; i < V; i++){
-            if(d[i]==Integer.MAX_VALUE){
+    private void printResult(int src) {
+        for (int i = 0; i < V; i++) {
+            if (d[i] == Integer.MAX_VALUE) {
                 System.out.println("No path from " + src + " to " + i);
-            }
-            else{
-            System.out.println("Shortest weight from "+src+" to " + i + " is " + d[i]);
-            System.out.print("Path is: ");
-            printPath(src, i);
-            System.out.println();
+            } else {
+                System.out.println("Shortest weight from " + src + " to " + i + " is " + d[i]);
+                System.out.print("Path is: ");
+                printPath(src, i);
+                System.out.println();
             }
         }
-    } 
-    //* driver code
+    }
+
+    // * driver code
     public void dijkstraStart(int src) {
         initialization(src);
         int u;
@@ -66,6 +66,6 @@ public class DijkstraUsingArray extends AdjMatrixGraph {
                 }
             }
         }
-        printResult(src);
+        //printResult(src);
     }
 }
