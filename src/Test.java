@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class Test {
     public static void main(String[] args) throws Exception {
         //*unncomment the following line to run the respective test program
@@ -5,9 +7,9 @@ public class Test {
         //testPrintGraph();
         //testDijkstra();
         //testGenerateRandomAdjMatrixGraph(5,10);
-        empiricalTest1(5,10);
+        empiricalTest1(1000,10);
     }
-    private static void empiricalTest1(int V, int maxWeight){
+    private static void empiricalTest1(int maxVertice, int maxWeight) throws IOException{
         //! this is the empirical test for the first question we raised
         /*
          * Suppose the input graph G = (V, E) is stored in an adjacency matrix
@@ -16,15 +18,23 @@ public class Test {
          *  and analyze its time complexity with respect to |V| and |E| 
          * both theoretically and empirically.
          */
-        GenerateRandomAdjMatrixGraph graph = new GenerateRandomAdjMatrixGraph(V);
-        graph.generateRandomGraphStart(V, maxWeight);
-        graph.printGraph();
-        System.out.println();
-        for(int i = 0; i < V; i++){
-            graph.dijkstraStart(i);
-            System.out.println();
-        }
-         
+        long[] verticeArr = new long[maxVertice];
+        long[] edgeArr = new long[maxVertice];
+        long[] runTimeArr = new long[maxVertice];
+        for(int v = 2; v < maxVertice ; v++){
+            System.out.println("Generating graph with "+v+" vertices");
+            GenerateRandomAdjMatrixGraph graph = new GenerateRandomAdjMatrixGraph(v);
+            graph.generateRandomGraphStart(v, maxWeight);
+            verticeArr[v] = graph.V;
+            edgeArr[v] = graph.edgeCount;
+            long startTime = System.nanoTime();
+            graph.dijkstraStart(0);
+            long endTime = System.nanoTime();
+            runTimeArr[v] = (int)(endTime - startTime);
+        } 
+        makeCSV.CSVprinter(verticeArr, "verticeArr.csv");
+        makeCSV.CSVprinter(edgeArr, "edgeArr.csv");
+        makeCSV.CSVprinter(runTimeArr, "runTimeArr.csv");
     }
     private static void testGenerateRandomAdjMatrixGraph(int V, int maxWeight) {
         GenerateRandomAdjMatrixGraph graph = new GenerateRandomAdjMatrixGraph(V);
