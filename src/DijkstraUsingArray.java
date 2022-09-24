@@ -3,7 +3,6 @@ public class DijkstraUsingArray extends AdjMatrixGraph {
     int[] pi;
     boolean[] visited;
 
-    // constructor
     public DijkstraUsingArray(int nodes) {
         super(nodes);
         d = new int[nodes];
@@ -43,14 +42,18 @@ public class DijkstraUsingArray extends AdjMatrixGraph {
 
     private void printResult(int src){
         for(int i = 0; i < V; i++){
+            if(d[i]==Integer.MAX_VALUE){
+                System.out.println("No path from " + src + " to " + i);
+            }
+            else{
             System.out.println("Shortest weight from "+src+" to " + i + " is " + d[i]);
             System.out.print("Path is: ");
-            printPath(0, i);
+            printPath(src, i);
             System.out.println();
+            }
         }
     } 
-
-    // driver code
+    //* driver code
     public void dijkstraStart(int src) {
         initialization(src);
         int u;
