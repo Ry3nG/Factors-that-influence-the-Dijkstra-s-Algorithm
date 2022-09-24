@@ -2,6 +2,7 @@ public class AdjMatrixGraph {
 
     int V;
     int matrix[][];
+    int edgeCount;
 
     public AdjMatrixGraph(int nodes) {
         V = nodes;
@@ -10,6 +11,7 @@ public class AdjMatrixGraph {
 
     public void addEdge(int src, int dest, int weight) {
         matrix[src][dest] = weight;
+        edgeCount++;
         // matrix[dest][src] = 1; //commented because it is a directed graph
     }
 
