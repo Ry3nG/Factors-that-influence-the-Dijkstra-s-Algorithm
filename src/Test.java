@@ -6,8 +6,9 @@ public class Test {
 
         //testPrintGraph();
         //testDijkstraArray();
-        testDijkstraPQ();
-        //testGenerateRandomGraph(5,10);
+        //testDijkstraPQ();
+        //testGenerateRandomGraph(10,10);
+
     }
     private static void testPrintGraph() {
         Graph g = new Graph(5);
@@ -57,8 +58,9 @@ public class Test {
         dijkstraTest.dijkstraPQStart(5, 0, g.adjList);
     }
     
-    private static void testGenerateRandomGraph(int V, int maxWeight) {
-        Graph g = new Graph(V, maxWeight);
+    private static void testGenerateRandomGraph(int maxVertices, int maxWeight) {
+        Graph g = new Graph(maxVertices, maxWeight);
+        System.out.println("Random Graph generated, V = " + g.V + ", E = " + g.E);
         g.printGraph();
     }
 
