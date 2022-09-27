@@ -1,7 +1,7 @@
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class makeCSV {
+public class MakeCSV {
     public static void CSVprinter(long[] wasp, String filename) throws IOException {
         FileWriter writer = new FileWriter(filename);
 
