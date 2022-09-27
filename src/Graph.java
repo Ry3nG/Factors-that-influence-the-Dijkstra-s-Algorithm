@@ -17,10 +17,10 @@ public class Graph {
         adjMatrix = new int[V][V];
     }
 
-    public Graph(int V, int maxWeight) {
+    public Graph(int maxVertices, int maxWeight) {
         // random graph generator
-
-        this.V = V;
+        Random rand = new Random();
+        this.V = rand.nextInt(maxVertices) + 2;
         adjList = new LinkedList[V];
         for (int i = 0; i < V; i++) {
             adjList[i] = new LinkedList<>();
@@ -32,9 +32,9 @@ public class Graph {
          * the maximum number of possible edges is
          * V*(V – 1)(with no multiple edges and self-loops).
          */
-        Random rand = new Random();
+
         int maxEdges = V * (V - 1);
-        int randEdges = rand.nextInt(maxEdges - 1 + 1) + 1;
+        int randEdges = rand.nextInt(maxEdges) + 1;
         for (int i = 0; i < randEdges; i++) {
             int src = rand.nextInt(V);
             int dest = rand.nextInt(V);
@@ -42,6 +42,8 @@ public class Graph {
                 int weight = rand.nextInt(maxWeight);
                 addEdge(src, dest, weight);
             }
+            else
+                i--;
         }
     }
 
@@ -49,6 +51,7 @@ public class Graph {
         Edge edge = new Edge(src, dest, weight);
         adjList[src].addFirst(edge);
         adjMatrix[src][dest] = weight;
+        E++;
     }
 
     public void printGraph() {
