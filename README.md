@@ -22,11 +22,16 @@ is better and in what circumstances.
 
 ## Development
 **[IMPORTANT] Make sure to read through this section before proceeding to develop this project (Updating...)**
-1. The three basic classes are Edge, AdjListGraph and AdjMatrixGraph. Their purposes are self-explanatory.
-2. I'm currently working on Question (a)(see 'Content' for details) so I created DijkstraUsingArray which extends AdjMatrixGraph.
-3. GenerateRandomAdjMatrixGraph extends DijkstraUsingArray, its purpose is also self-explanatory.
-4. The Test class will be where we carry out all the empirical tests. I've maintained all the test sub-routines as private methods so you can simply uncomment in 'main' to run the tests. All future tests should also be maintained in the same way.
-5. makeCSV file is directly from out last project, credit to Joel. I think we will use that later.
+> the descriptions for each class file is just an overview, for details please check the respective codes
+* [Edge.java](src/Edge.java): self-explainatory
+* [Graph.java](src/Graph.java): implements graph in both adjList and adjMatrix format, has different constructors for random graph generation
+* [DijkstraAlgo.java](src/DijkstraAlgo.java): implements the Dijkstra algorithm in two ways: adjMatrix+Array and adjList+PriorityQueue.
+* [Test.java](src/Test.java): holds all unit test sub-routines. Currenly building: empiricalTest1 and empiricalTest2
+* [MakeCSV.java](src/MakeCSV.java): copied from our previous project, credit to Joel.
+  
+For convenience sake, if you want to create new test subroutines, you can directly commit to test.java at main branch
+
+However, if you want to modify the implemented code, make sure to raise an issue and publish on a different branch so that our source code is protected.
 ## Folder Structure
 
 The workspace contains two folders by default, where:
