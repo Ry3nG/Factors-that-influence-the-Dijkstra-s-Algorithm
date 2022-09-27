@@ -5,15 +5,16 @@ public class GenerateRandomAdjMatrixGraph extends DijkstraUsingArray {
     public GenerateRandomAdjMatrixGraph(int nodes) {
         super(nodes);
     }
-    private boolean existEdge(int src, int dest){
+
+    private boolean existEdge(int src, int dest) {
         // check if there is alreeady an edge between src and dest
-        if(matrix[src][dest] != 0){
+        if (matrix[src][dest] != 0) {
             return true;
         }
         return false;
     }
-    
-    //* driver code
+
+    // * driver code
     public void generateRandomGraphStart(int nodes, int maxWeight) {
         /*
          * For a randomly chosen number of vertices V,
@@ -22,11 +23,11 @@ public class GenerateRandomAdjMatrixGraph extends DijkstraUsingArray {
          */
         Random rand = new Random();
         int maxEdges = nodes * (nodes - 1);
-        int randEdges = rand.nextInt(maxEdges-1+1) + 1;
+        int randEdges = rand.nextInt(maxEdges - 1 + 1) + 1;
         for (int i = 0; i < randEdges; i++) {
             int src = rand.nextInt(nodes);
             int dest = rand.nextInt(nodes);
-            if (src != dest && !existEdge(src, dest)) {
+            if (src != dest /* && !existEdge(src, dest) */) {
                 int weight = rand.nextInt(maxWeight);
                 addEdge(src, dest, weight);
             }
