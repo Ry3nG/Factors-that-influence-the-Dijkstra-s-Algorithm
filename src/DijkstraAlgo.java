@@ -80,7 +80,7 @@ public class DijkstraAlgo{
                 }
             }
         }
-        printResult(vertice,src);
+        //printResult(vertice,src);
     }
 
     public void dijkstraPQStart(int vertice,int src, LinkedList<Edge>[] adjList) {
@@ -102,6 +102,6 @@ public class DijkstraAlgo{
                 }
             }
         }
-        printResult(vertice,src);
+        //printResult(vertice,src);
     }
 }
