@@ -12,7 +12,7 @@ public class Test {
         // testDijkstraArray();
         // testDijkstraPQ();
         // testGenerateRandomGraph(10,10);
-        empiricalTest(1000, 100, 500, 100);
+        empiricalTest(300, 1000, 500, 1000);
     }
 
     /**
