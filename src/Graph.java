@@ -17,8 +17,14 @@ public class Graph {
         adjMatrix = new int[V][V];
     }
 
+    /**
+     * Constructor to generate random graph
+     * 
+     * @param maxVertices maximum number of vertices in the graph
+     * @param maxWeight maximum weight of an edge
+     */
     public Graph(int maxVertices, int maxWeight) {
-        // random graph generator
+
         Random rand = new Random();
         this.V = rand.nextInt(maxVertices) + 2;
         adjList = new LinkedList[V];
@@ -34,15 +40,14 @@ public class Graph {
          */
 
         int maxEdges = V * (V - 1);
-        int randEdges = rand.nextInt(maxEdges) + 1;
+        int randEdges = rand.nextInt(maxEdges-V+1) + 1;
         for (int i = 0; i < randEdges; i++) {
             int src = rand.nextInt(V);
             int dest = rand.nextInt(V);
             if (src != dest && !existEdge(src, dest)) {
                 int weight = rand.nextInt(maxWeight);
                 addEdge(src, dest, weight);
-            }
-            else
+            } else
                 i--;
         }
     }
