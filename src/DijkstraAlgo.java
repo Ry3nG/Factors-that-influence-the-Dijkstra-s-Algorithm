@@ -2,11 +2,12 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
-public class DijkstraAlgo{
+public class DijkstraAlgo {
     static int[] d;
     static int[] pi;
     static boolean[] visited;
     static PriorityQueue<Edge> pq;
+
     public DijkstraAlgo(int V) {
         d = new int[V];
         pi = new int[V];
@@ -54,7 +55,7 @@ public class DijkstraAlgo{
         System.out.print(dest + " ");
     }
 
-    private static void printResult(int vertice,int src) {
+    private static void printResult(int vertice, int src) {
         for (int i = 0; i < vertice; i++) {
             if (d[i] == Integer.MAX_VALUE) {
                 System.out.println("No path from " + src + " to " + i);
@@ -69,7 +70,7 @@ public class DijkstraAlgo{
 
     // * driver code
     public void dijkstraArrayStart(int vertice, int src, int[][] adjMatrix) {
-        initialization(vertice,src);
+        initialization(vertice, src);
         int u;
         while ((u = findNextNode(vertice)) != -1) {
             visited[u] = true;
@@ -80,28 +81,25 @@ public class DijkstraAlgo{
                 }
             }
         }
-        //printResult(vertice,src);
     }
 
-    public void dijkstraPQStart(int vertice,int src, LinkedList<Edge>[] adjList) {
-        initialization(vertice,src); //O(V)
+    public void dijkstraPQStart(int vertice, int src, LinkedList<Edge>[] adjList) {
+        initialization(vertice, src);
         pq.add(new Edge(src, src, 0));
-        while (!pq.isEmpty()) { // O(n)
-            Edge edge = pq.poll(); // O(logE)
+        while (!pq.isEmpty()) {
+            Edge edge = pq.poll();
             int u = edge.dest;
             if (visited[u])
                 continue;
             visited[u] = true;
-            for (Edge e : adjList[u])// O(V)
-            {
+            for (Edge e : adjList[u]) {
                 int v = e.dest;
                 if (!visited[v] && d[u] != Integer.MAX_VALUE && d[u] + e.weight < d[v]) {
                     d[v] = d[u] + e.weight;
                     pi[v] = u;
-                    pq.add(new Edge(u, v, d[v]));// O(logn)
+                    pq.add(new Edge(u, v, d[v]));
                 }
             }
         }
-        //printResult(vertice,src);
     }
 }
