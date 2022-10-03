@@ -21,34 +21,64 @@ public class Graph {
      * Constructor to generate random graph
      * 
      * @param maxVertices maximum number of vertices in the graph
-     * @param maxWeight maximum weight of an edge
+     * @param maxWeight   maximum weight of an edge
      */
-    public Graph(int maxVertices, int maxWeight) {
+    public Graph(int maxVertices, int maxWeight, int sparseFactor) {
 
-        Random rand = new Random();
-        this.V = rand.nextInt(maxVertices) + 2;
-        adjList = new LinkedList[V];
-        for (int i = 0; i < V; i++) {
-            adjList[i] = new LinkedList<>();
+        if (sparseFactor == 0) {
+            Random rand = new Random();
+            this.V = rand.nextInt(maxVertices) + 2;
+            adjList = new LinkedList[V];
+            for (int i = 0; i < V; i++) {
+                adjList[i] = new LinkedList<>();
+            }
+            adjMatrix = new int[V][V];
+
+            /*
+             * For a randomly chosen number of vertices V,
+             * the maximum number of possible edges is
+             * V*(V – 1)(with no multiple edges and self-loops).
+             */
+
+            int maxEdges = V * (V - 1);
+            int randEdges = rand.nextInt(maxEdges - V + 1) + 1;
+            for (int i = 0; i < randEdges; i++) {
+                int src = rand.nextInt(V);
+                int dest = rand.nextInt(V);
+                if (src != dest && !existEdge(src, dest)) {
+                    int weight = rand.nextInt(maxWeight);
+                    addEdge(src, dest, weight);
+                } else
+                    i--;
+            }
         }
-        adjMatrix = new int[V][V];
+        else{   
+            // generate sparse graph
+            Random rand = new Random();
+            this.V = rand.nextInt(maxVertices) + 2;
+            adjList = new LinkedList[V];
+            for (int i = 0; i < V; i++) {
+                adjList[i] = new LinkedList<>();
+            }
+            adjMatrix = new int[V][V];
 
-        /*
-         * For a randomly chosen number of vertices V,
-         * the maximum number of possible edges is
-         * V*(V – 1)(with no multiple edges and self-loops).
-         */
+            /*
+             * For a randomly chosen number of vertices V,
+             * the maximum number of possible edges is
+             * V*(V – 1)(with no multiple edges and self-loops).
+             */
 
-        int maxEdges = V * (V - 1);
-        int randEdges = rand.nextInt(maxEdges-V+1) + 1;
-        for (int i = 0; i < randEdges; i++) {
-            int src = rand.nextInt(V);
-            int dest = rand.nextInt(V);
-            if (src != dest && !existEdge(src, dest)) {
-                int weight = rand.nextInt(maxWeight);
-                addEdge(src, dest, weight);
-            } else
-                i--;
+            int edgeCount = V-1; //minimum E for a connected graph
+            for (int i = 0; i < edgeCount; i++) {
+                int src = rand.nextInt(V);
+                int dest = rand.nextInt(V);
+                if (src != dest && !existEdge(src, dest)) {
+                    int weight = rand.nextInt(maxWeight);
+                    addEdge(src, dest, weight);
+                } else
+                    i--;
+            }
+
         }
     }
 
